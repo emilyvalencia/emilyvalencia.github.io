@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emily Valencia — AI Learning & Enablement</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #18170f;
+  --ink-mid: #4a4840;
+  --ink-muted: #7a7870;
+  --ink-faint: #b8b4ac;
+  --surface: #f7f5f0;
+  --surface-warm: #f0ede5;
+  --surface-card: #fdfcf9;
+  --forest: #1f4a34;
+  --forest-mid: #2d6648;
+  --forest-light: #e4ede8;
+  --ember: #b84f1f;
+  --ember-light: #f5e8e0;
+  --border: rgba(24,23,15,0.1);
+  --border-strong: rgba(24,23,15,0.2);
+  --serif: 'Playfair Display', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --radius: 12px;
+  --radius-sm: 6px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 3rem;
+  background: rgba(247,245,240,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.nav-logo span {
+  font-size: 0.72rem;
+  font-family: var(--sans);
+  font-weight: 300;
+  color: var(--ink-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-left: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--forest); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-avail {
+  font-size: 0.72rem;
+  color: var(--forest-mid);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.avail-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--forest-mid);
+  border-radius: 50%;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.nav-cta {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  background: var(--forest);
+  color: white;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.nav-cta:hover { background: var(--forest-mid); }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8rem 3rem 5rem;
+  gap: 5rem;
+  align-items: center;
+}
+
+.hero-left { }
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--forest-mid);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eyebrow-line {
+  width: 28px;
+  height: 1px;
+  background: var(--forest-mid);
+}
+
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--forest);
+}
+
+h1 .accent-line {
+  display: block;
+  position: relative;
+}
+
+.hero-body {
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 2.25rem;
+}
+
+.hero-body strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.btn-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--forest);
+  color: white;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover { background: var(--forest-mid); transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.5rem;
+  color: var(--ink-mid);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: 100px;
+  border: 1px solid var(--border-strong);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--forest); color: var(--forest); }
+
+/* Stats grid */
+.hero-right { }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1px;
+}
+
+.stat-cell {
+  background: var(--surface-card);
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-cell::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--forest-light);
+}
+
+.stat-num {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  color: var(--ink);
+  line-height: 1;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+.hero-tagline-card {
+  background: var(--forest);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hero-tagline-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.5;
+}
+
+.hero-tagline-sub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--mono);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ─── SECTION WRAPPERS ─── */
+.section-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 3rem;
+}
+
+.section-band {
+  padding: 6rem 3rem;
+}
+
+.section-band-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--ink-faint);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* ─── QUALIFIER BAND ─── */
+#qualifier {
+  background: var(--forest);
+  padding: 5rem 3rem;
+}
+
+.qualifier-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.qualifier-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 2.5rem;
+}
+
+.qualifier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.qualifier-card {
+  background: rgba(255,255,255,0.06);
+  padding: 2rem 1.75rem;
+  transition: background 0.2s;
+}
+
+.qualifier-card:hover { background: rgba(255,255,255,0.1); }
+
+.qualifier-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.75rem;
+}
+
+.qualifier-heading {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.95);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+.qualifier-body {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+}
+
+/* ─── SERVICES ─── */
+#services { background: white; }
+
+.services-primary {
+  background: var(--forest-light);
+  border: 1px solid rgba(31,74,52,0.15);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  margin-bottom: 1px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.services-primary-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--forest-mid);
+  margin-bottom: 0.75rem;
+}
+
+.services-primary-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.55rem;
+  line-height: 1.25;
+  color: var(--forest);
+  margin-bottom: 1rem;
+}
+
+.services-primary-body {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+}
+
+.services-primary-phases {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(31,74,52,0.12);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.phase-row {
+  background: rgba(255,255,255,0.7);
+  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.phase-num {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 300;
+  color: var(--forest-mid);
+  letter-spacing: 0.05em;
+  padding-top: 0.15rem;
+}
+
+.phase-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.phase-desc {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.services-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 1px;
+}
+
+.service-card {
+  background: var(--surface-card);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.service-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.service-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--surface-warm);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.service-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.service-desc {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  font-size: 0.68rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+  background: var(--surface-warm);
+  color: var(--ink-muted);
+}
+
+/* ─── QUOTE STRIP ─── */
+.quote-strip {
+  background: var(--ember-light);
+  border-top: 1px solid rgba(184,79,31,0.12);
+  border-bottom: 1px solid rgba(184,79,31,0.12);
+  padding: 2.5rem 3rem;
+}
+
+.quote-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.quote-mark {
+  font-family: var(--serif);
+  font-size: 4rem;
+  color: rgba(184,79,31,0.25);
+  line-height: 1;
+  font-style: italic;
+  user-select: none;
+}
+
+.quote-body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.quote-attr {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+/* ─── HOW WE WORK ─── */
+#process { background: var(--surface-warm); }
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.process-step {
+  background: var(--surface-card);
+  padding: 2rem 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.process-step::after {
+  content: '';
+  position: absolute;
+  top: 2rem; right: -1px;
+  width: 1px;
+  height: 28px;
+  background: var(--forest-light);
+}
+
+.process-step:last-child::after { display: none; }
+
+.process-num {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 300;
+  color: var(--forest-mid);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.process-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.process-desc {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+
+.process-deliverables {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.deliverable {
+  font-size: 0.72rem;
+  color: var(--forest-mid);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.deliverable::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--forest-mid);
+  flex-shrink: 0;
+}
+
+.process-note {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--forest-light);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--forest);
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+}
+
+.process-note-text {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+}
+
+.process-note-text strong {
+  color: var(--forest);
+  font-weight: 500;
+}
+
+/* ─── WORK ─── */
+#work { background: white; }
+
+.work-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1px;
+  transition: border-color 0.2s;
+}
+
+.work-item:hover { border-color: var(--border-strong); }
+
+.work-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.75rem 2rem;
+  background: var(--surface-card);
+}
+
+.work-num {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  padding-top: 0.2rem;
+}
+
+.work-main { }
+
+.work-client {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.35rem;
+}
+
+.work-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.work-problem {
+  font-size: 0.83rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.work-metric {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--forest-mid);
+  text-align: right;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.work-metric small {
+  display: block;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--ink-faint);
+  margin-top: 0.15rem;
+}
+
+.work-outcome {
+  padding: 1.25rem 2rem;
+  background: var(--surface-warm);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.outcome-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  padding-top: 0.15rem;
+}
+
+.outcome-text {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+
+.outcome-text strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ─── ABOUT ─── */
+#about { background: var(--surface); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.about-body p {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
+
+.about-body p strong { color: var(--ink); font-weight: 500; }
+
+.engagement-types {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.engagement-row {
+  background: var(--surface-card);
+  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.engagement-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--forest-mid);
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.engagement-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.engagement-desc {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.about-sidebar { }
+
+.sidebar-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.sidebar-label:first-child { margin-top: 0; }
+
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.pill {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 100px;
+  color: var(--ink-mid);
+  background: var(--surface-card);
+}
+
+.pill-green {
+  background: var(--forest-light);
+  border-color: rgba(31,74,52,0.2);
+  color: var(--forest);
+}
+
+/* ─── CONTACT ─── */
+#contact {
+  background: var(--ink);
+  padding: 7rem 3rem;
+}
+
+.contact-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.contact-left h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 2.8rem;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.contact-left h2 em {
+  color: rgba(255,255,255,0.45);
+}
+
+.contact-sub {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: white;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.2s;
+}
+
+.contact-btn-primary:hover { opacity: 0.9; }
+
+.contact-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.88rem;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.contact-btn-secondary:hover { border-color: rgba(255,255,255,0.35); color: white; }
+
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.contact-quote-card {
+  background: rgba(255,255,255,0.05);
+  padding: 1.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.contact-quote-card:last-child { border-bottom: none; }
+
+.cq-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.65;
+  margin-bottom: 0.6rem;
+}
+
+.cq-attr {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-left {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.05em;
+}
+
+.footer-right {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-left > * {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.hero-eyebrow { animation-delay: 0.1s; }
+h1 { animation-delay: 0.22s; }
+.hero-body { animation-delay: 0.34s; }
+.btn-row { animation-delay: 0.44s; }
+
+.hero-right {
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.35s forwards;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 860px) {
+  #hero { grid-template-columns: 1fr; padding-top: 7rem; gap: 3rem; }
+  .qualifier-grid { grid-template-columns: 1fr; }
+  .services-primary { grid-template-columns: 1fr; }
+  .services-secondary-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .section-wrap, .section-band { padding: 4rem 1.5rem; }
+  #qualifier { padding: 4rem 1.5rem; }
+  #contact { padding: 5rem 1.5rem; }
+  footer { padding: 1.5rem; }
+}
+
+@media (max-width: 540px) {
+  .services-secondary-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  h1 { font-size: 2.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Emily Valencia <span>AI Learning & Enablement</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">How it works</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-avail"><span class="avail-dot"></span> Available for projects</span>
+    <a href="mailto:valencia.emilyann@gmail.com" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      AI Learning & Enablement · Bay Area, CA
+    </div>
+    <h1>Your team has<br><em>the AI tools.</em><br>Now they need<br><em>to&nbsp;actually use them.</em></h1>
+    <p class="hero-body">
+      I'm an AI Learning & Development specialist — equal parts <strong>learning strategist, tool builder, and enablement designer</strong>. I work with organizations to identify where AI gets stuck, build the tools and workflows your team needs, and design the learning experiences that make adoption real.
+    </p>
+    <div class="btn-row">
+      <a href="#process" class="btn-primary">How I work →</a>
+      <a href="#work" class="btn-ghost">See the work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <span class="stat-num">800+</span>
+        <span class="stat-label">Marketers upskilled in a single quarter</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">11</span>
+        <span class="stat-label">Production AI tools launched in 14 days</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">84%</span>
+        <span class="stat-label">Of target audience reached at inaugural AI Hackathon</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">$500K</span>
+        <span class="stat-label">Learning program portfolio co-led (FY27)</span>
+      </div>
+    </div>
+    <div class="hero-tagline-card">
+      <span class="hero-tagline-text">"Emily thoughtfully designed the learning experience."</span>
+      <span class="hero-tagline-sub">Marketing Director · Intuit</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFIER BAND -->
+<div id="qualifier">
+  <div class="qualifier-inner">
+    <div class="qualifier-eyebrow">Sound familiar?</div>
+    <div class="qualifier-grid">
+      <div class="qualifier-card">
+        <div class="qualifier-label">Problem 01</div>
+        <div class="qualifier-heading">You've rolled out AI tools. Nobody's really using them.</div>
+        <div class="qualifier-body">Tool access isn't the same as adoption. Without the right scaffolding — the right learning experience woven around the work — teams default to old habits. I design the bridge.</div>
+      </div>
+      <div class="qualifier-card">
+        <div class="qualifier-label">Problem 02</div>
+        <div class="qualifier-heading">You need someone who can build it AND teach it.</div>
+        <div class="qualifier-body">Most L&D folks design learning about AI. I build the tools themselves — Claude Skills, custom GPTs, chained AI workflows — then design the learning experience that gets people using them.</div>
+      </div>
+      <div class="qualifier-card">
+        <div class="qualifier-label">Problem 03</div>
+        <div class="qualifier-heading">You don't have an internal AI L&D team. Yet.</div>
+        <div class="qualifier-body">I function as an embedded AI L&D practice: strategy, curriculum, tooling, facilitation, measurement. From identifying the friction points to shipping the solution and tracking what changed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="services" class="section-band" style="background: white;">
+  <div class="section-band-inner">
+    <div class="section-header">
+      <h2>Services</h2>
+      <div class="section-rule"></div>
+      <span class="section-num">02</span>
+    </div>
+
+    <!-- Primary offer -->
+    <div class="services-primary">
+      <div>
+        <div class="services-primary-label">Core offer</div>
+        <div class="services-primary-title">End-to-end AI enablement — from friction to fluency</div>
+        <div class="services-primary-body">The work I do best spans the whole arc: finding where AI gets stuck in your org, building the tools and workflows your team needs, and designing the learning experiences that make adoption stick. This is what it looks like to have an AI L&D team — without building one from scratch.</div>
+      </div>
+      <div class="services-primary-phases">
+        <div class="phase-row">
+          <span class="phase-num">01</span>
+          <div>
+            <div class="phase-name">Discover friction</div>
+            <div class="phase-desc">Workflow audits, stakeholder interviews, and adoption gap analysis to find where AI is stalling and why.</div>
+          </div>
+        </div>
+        <div class="phase-row">
+          <span class="phase-num">02</span>
+          <div>
+            <div class="phase-name">Design the learning arc</div>
+            <div class="phase-desc">Curriculum architecture mapped to real workflows — Core → Applied → Advanced, role-aware, measurement-built-in.</div>
+          </div>
+        </div>
+        <div class="phase-row">
+          <span class="phase-num">03</span>
+          <div>
+            <div class="phase-name">Build the tools</div>
+            <div class="phase-desc">Claude Skills, custom GPTs, chained workflows, microsites, and performance support embedded in the work.</div>
+          </div>
+        </div>
+        <div class="phase-row">
+          <span class="phase-num">04</span>
+          <div>
+            <div class="phase-name">Enable and measure</div>
+            <div class="phase-desc">Workshops, hackathons, facilitation, and measurement frameworks (NPS, T2B, adoption signals) that show what changed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Supporting services -->
+    <div class="services-secondary-grid">
+      <div class="service-card">
+        <div class="service-icon-row">
+          <div class="service-icon">🗺️</div>
+        </div>
+        <div class="service-title">Learning Strategy & Curriculum</div>
+        <div class="service-desc">Roadmaps, curriculum architecture, and measurement frameworks for L&D teams that need direction before they build.</div>
+        <div class="service-tags">
+          <span class="tag">Curriculum design</span>
+          <span class="tag">L&D roadmaps</span>
+          <span class="tag">Measurement</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-row">
+          <div class="service-icon">🎤</div>
+        </div>
+        <div class="service-title">Workshop Design & Facilitation</div>
+        <div class="service-desc">Hands-on AI workshops for audiences from 60 to 480+. Proficiency-segmented, live or virtual, with built-in follow-through.</div>
+        <div class="service-tags">
+          <span class="tag">Live facilitation</span>
+          <span class="tag">AI workshops</span>
+          <span class="tag">Hackathons</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-row">
+          <div class="service-icon">🔬</div>
+        </div>
+        <div class="service-title">MVP Validation & Prototyping</div>
+        <div class="service-desc">Learning product thinking: competitive prototypes, discovery interviews, and validated direction before you commit to a build.</div>
+        <div class="service-tags">
+          <span class="tag">Discovery research</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">MVP validation</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-row">
+          <div class="service-icon">📋</div>
+        </div>
+        <div class="service-title">Vendor & Program Management</div>
+        <div class="service-desc">SOW scoping, acceptance criteria, vendor selection, and portfolio-level oversight for L&D programs with real stakes.</div>
+        <div class="service-tags">
+          <span class="tag">SOW negotiation</span>
+          <span class="tag">Vendor management</span>
+          <span class="tag">Budget oversight</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE STRIP 1 -->
+<div class="quote-strip">
+  <div class="quote-strip-inner">
+    <div class="quote-mark">"</div>
+    <div>
+      <div class="quote-body">Shoutout to Emily Valencia for jumping in and navigating ambiguity & pivots to ensure we made it across the finish line.</div>
+      <div class="quote-attr">Staff Marketer · Intuit</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW WE WORK -->
+<div id="process" class="section-band" style="background: var(--surface-warm);">
+  <div class="section-band-inner">
+    <div class="section-header">
+      <h2>How we work together</h2>
+      <div class="section-rule"></div>
+      <span class="section-num">03</span>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">01 — Discover</div>
+        <div class="process-name">Find the friction</div>
+        <div class="process-desc">We start with what's actually getting in the way — not assumptions. Stakeholder interviews, workflow audits, and adoption gap analysis to understand where AI is stalling in your organization and why.</div>
+        <div class="process-deliverables">
+          <span class="deliverable">Workflow friction map</span>
+          <span class="deliverable">Adoption gap analysis</span>
+          <span class="deliverable">Prioritized opportunity areas</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02 — Design</div>
+        <div class="process-name">Map the learning arc</div>
+        <div class="process-desc">Curriculum architecture that meets people where they are. Role-aware progressions (Core → Applied → Advanced), measurement baked in from the start, and a strategy that connects to your actual business outcomes.</div>
+        <div class="process-deliverables">
+          <span class="deliverable">Curriculum blueprint</span>
+          <span class="deliverable">Role-aware learning paths</span>
+          <span class="deliverable">Measurement framework</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03 — Build</div>
+        <div class="process-name">Ship the tools</div>
+        <div class="process-desc">Production-ready AI tools, workflows, and performance support — built to live inside how your team actually works. Claude Skills, custom GPTs, chained AI workflows, microsites. I build and test with your team.</div>
+        <div class="process-deliverables">
+          <span class="deliverable">Claude Skills / custom GPTs</span>
+          <span class="deliverable">Workflow tools in production</span>
+          <span class="deliverable">Performance support resources</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04 — Enable</div>
+        <div class="process-name">Drive adoption</div>
+        <div class="process-desc">Workshops, hackathons, and facilitated sessions that put tools in people's hands — with the scaffolding to make it stick. I stay to measure what changed: NPS, Top-2-Box, adoption signals, behavioral indicators.</div>
+        <div class="process-deliverables">
+          <span class="deliverable">Workshop facilitation</span>
+          <span class="deliverable">NPS + adoption measurement</span>
+          <span class="deliverable">Iteration recommendations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-note">
+      <div class="process-note-text">
+        <strong>You don't need all four phases.</strong> Some clients come in at Build — they've already done the discovery and need someone to design and ship the tools. Others need a single workshop to jumpstart adoption. We start where you are.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK -->
+<div id="work" class="section-band" style="background: white;">
+  <div class="section-band-inner">
+    <div class="section-header">
+      <h2>Selected work</h2>
+      <div class="section-rule"></div>
+      <span class="section-num">04</span>
+    </div>
+
+    <div class="work-item">
+      <div class="work-header">
+        <span class="work-num">01</span>
+        <div class="work-main">
+          <div class="work-client">Intuit · Marketing & Communications</div>
+          <div class="work-title">Claude for Marketers — Intuit's largest-ever AI workshop series</div>
+          <div class="work-problem">With a major AI tool rollout underway, Intuit needed to move 800+ marketers from access to fluency — fast. Two weeks, two workshops, one shot to change how the entire team worked with AI.</div>
+        </div>
+        <div class="work-metric">~800<br><small>marketers upskilled</small></div>
+      </div>
+      <div class="work-outcome">
+        <span class="outcome-label">Outcome</span>
+        <div class="outcome-text">Part 1 drew <strong>480 attendees — more than 2× the team's prior workshop record</strong>. Part 2 pulled 315, with VP Thomas Ranese attending personally and recommending the recording for company-wide distribution. Leadership publicly recognized the team for navigating the pivots and shipping.</div>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-header">
+        <span class="work-num">02</span>
+        <div class="work-main">
+          <div class="work-client">Intuit · Marketing & Communications</div>
+          <div class="work-title">D4D Experimentation Plugin — a 5-skill AI workflow for marketers</div>
+          <div class="work-problem">Intuit's D4D (Design for Delight) methodology is central to how marketers design experiments — but applying it consistently, at scale, required a facilitator in every session. The goal: encode the methodology into a tool that works without one.</div>
+        </div>
+        <div class="work-metric">5 skills<br><small>chained workflow</small></div>
+      </div>
+      <div class="work-outcome">
+        <span class="outcome-label">Outcome</span>
+        <div class="outcome-text">Shipped a <strong>5-skill chained Claude workflow</strong> guiding marketers through problem framing, hypothesis building, LOFA identification, experiment design, and learning planning. Owned end-to-end: scoped the vendor SOW, <strong>negotiated the contract down to $28K</strong> with tightened scope and clear acceptance criteria, and published to Intuit's GenAI Hub in April 2026.</div>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-header">
+        <span class="work-num">03</span>
+        <div class="work-main">
+          <div class="work-client">Intuit · Marketing & Communications</div>
+          <div class="work-title">Marketing AI Hackathon — end-to-end learning experience design</div>
+          <div class="work-problem">Intuit's marketing team had AI tools. What they needed was proof of concept — a shared experience that made the possibilities tangible, and built the internal confidence to actually build with AI.</div>
+        </div>
+        <div class="work-metric">84%<br><small>of target audience reached</small></div>
+      </div>
+      <div class="work-outcome">
+        <span class="outcome-label">Outcome</span>
+        <div class="outcome-text">Designed the full learning experience for the team's inaugural AI Hackathon — coaching structure, tool scaffolding across 6 platforms, pacing, and executive engagement strategy. <strong>143 attendees (84% of addressable PMM + Brand audience)</strong>, 14 AI coaches, 5 executive sponsors who stayed the full event. Three production-grade prototypes built in under 2 hours of build time.</div>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-header">
+        <span class="work-num">04</span>
+        <div class="work-main">
+          <div class="work-client">Intuit · Marketing Skills Hub</div>
+          <div class="work-title">11 Claude Skills in 14 Days — production tools for 800+ marketers</div>
+          <div class="work-problem">Intuit's marketers needed AI tools they could actually use in their daily workflows — not demos, not prototypes. Production-ready tools, built fast, with real adoption from day one.</div>
+        </div>
+        <div class="work-metric">11 tools<br><small>in 14 days</small></div>
+      </div>
+      <div class="work-outcome">
+        <span class="outcome-label">Outcome</span>
+        <div class="outcome-text">Core member of the cross-functional Marketing Skills Taskforce. Designed, built, and published <strong>11 production-ready Claude Skills</strong> covering briefs, personas, lifecycle creative brainstorming, and branded deck generation. <strong>Several were adopted live during workshops</strong> — tools built in the morning, used by marketers by afternoon.</div>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-header">
+        <span class="work-num">05</span>
+        <div class="work-main">
+          <div class="work-client">Intuit · Craft Academy</div>
+          <div class="work-title">Strategic pivot from course catalog to AI-powered performance ecosystem</div>
+          <div class="work-problem">Craft Academy — Intuit's marketing skills development program — was operating as a course catalog. The opportunity was bigger: an AI-powered performance ecosystem where learning happened inside the work, not alongside it. The question was whether anyone actually wanted that, and what form it should take.</div>
+        </div>
+        <div class="work-metric">AI-powered<br><small>learning ecosystem</small></div>
+      </div>
+      <div class="work-outcome">
+        <span class="outcome-label">Outcome</span>
+        <div class="outcome-text">Led the strategic reframe toward <strong>an AI-powered learning ecosystem</strong> designed to meet marketers across Intuit with personalized learning plans, curated recommendations, and direct access to AI tools and templates at the moments of friction in their work. Built two competing microsite prototypes on GitHub Pages and ran 6 customer-discovery interviews to validate the direction before any vendor commitment. Owned the full vendor decision matrix across 5 agencies and managed the Docebo migration timeline.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- ABOUT -->
+<div id="about" class="section-band">
+  <div class="section-band-inner">
+    <div class="section-header">
+      <h2>About</h2>
+      <div class="section-rule"></div>
+      <span class="section-num">05</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm Emily — an AI Learning Designer and Learning Strategist with <strong>10+ years designing learning experiences</strong>, the last several at enterprise scale. Most recently at Intuit, where I owned end-to-end learning strategy for 800+ marketers, built and shipped AI-powered tools and workflows used in production, and ran programs from curriculum architecture through vendor negotiation to live facilitation.</p>
+        <p>My background spans adult and youth learning theory, performance-embedded learning design, and the full stack of AI enablement — from instructional scaffolding to <strong>shipping production-ready AI tools</strong>. I design things that hold up in front of 480 people and build things that go into production the same day.</p>
+        <p>What I bring is rare: the ability to identify the friction, design the learning arc, build the actual tools, and facilitate the experience that gets a team moving. <strong>I function as an AI L&D team of one</strong> — or I embed with yours.</p>
+        <p>I've worked with marketing organizations, tech teams, and enterprise L&D functions. I'm based in Mountain View, CA and available for remote engagements.</p>
+
+        <div class="engagement-types">
+          <div class="engagement-row">
+            <div class="engagement-dot"></div>
+            <div>
+              <div class="engagement-name">Discovery sprint</div>
+              <div class="engagement-desc">2–4 week engagement to map friction, validate direction, and deliver a prioritized roadmap. Right for teams that need clarity before they commit to a build.</div>
+            </div>
+          </div>
+          <div class="engagement-row">
+            <div class="engagement-dot"></div>
+            <div>
+              <div class="engagement-name">Embedded consulting</div>
+              <div class="engagement-desc">Ongoing fractional engagement — I work inside your team on active programs. Right for orgs building an AI enablement practice and needing a strategic + execution partner.</div>
+            </div>
+          </div>
+          <div class="engagement-row">
+            <div class="engagement-dot"></div>
+            <div>
+              <div class="engagement-name">Full program build</div>
+              <div class="engagement-desc">End-to-end: discovery through launch. Tools, curriculum, facilitation, and measurement. Right for teams shipping an AI rollout, platform launch, or new capability program.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-sidebar">
+        <div class="sidebar-label">AI tools</div>
+        <div class="pill-group">
+          <span class="pill pill-green">Claude · Skills & Projects</span>
+          <span class="pill pill-green">ChatGPT / GPT-5</span>
+          <span class="pill pill-green">Gemini</span>
+          <span class="pill pill-green">Writer</span>
+          <span class="pill pill-green">NotebookLM</span>
+          <span class="pill pill-green">Google App Script</span>
+        </div>
+
+        <div class="sidebar-label">Build & design</div>
+        <div class="pill-group">
+          <span class="pill">Custom GPTs</span>
+          <span class="pill">GitHub Pages</span>
+          <span class="pill">Figma</span>
+          <span class="pill">Articulate Rise</span>
+          <span class="pill">Docebo</span>
+          <span class="pill">Miro / Mural</span>
+        </div>
+
+        <div class="sidebar-label">Industries served</div>
+        <div class="pill-group">
+          <span class="pill">Marketing orgs</span>
+          <span class="pill">Tech & SaaS</span>
+          <span class="pill">Enterprise L&D</span>
+          <span class="pill">Growth-stage teams</span>
+        </div>
+
+        <div class="sidebar-label">Background</div>
+        <div class="pill-group">
+          <span class="pill">M.A. Teaching & Education</span>
+          <span class="pill">B.A. Anthropology</span>
+          <span class="pill">10+ years L&D</span>
+          <span class="pill">Intuit · Apple · Washoe County School District</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Ready to move<br>from access<br>to <em>fluency?</em></h2>
+      <p class="contact-sub">Let's talk about where your team is getting stuck — and what it would take to actually get them moving. I'm available for project-based and fractional engagements, remote or Bay Area.</p>
+      <div class="contact-buttons">
+        <a href="mailto:valencia.emilyann@gmail.com" class="contact-btn-primary">
+          <span>valencia.emilyann@gmail.com</span>
+          <span>→</span>
+        </a>
+        <a href="https://linkedin.com/in/emily-valencia" target="_blank" class="contact-btn-secondary">
+          <span>LinkedIn profile</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-quote-card">
+        <div class="cq-text">Shoutout to Emily Valencia for jumping in and navigating ambiguity & pivots to ensure we made it across the finish line.</div>
+        <div class="cq-attr">Staff Marketer · Intuit</div>
+      </div>
+      <div class="contact-quote-card">
+        <div class="cq-text">Emily thoughtfully designed the learning experience.</div>
+        <div class="cq-attr">Marketing Director · Intuit AI Hackathon recap</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-left">© 2026 Emily Valencia · AI Learning & Enablement · Bay Area, CA</span>
+  <span class="footer-right">Available for remote engagements</span>
+</footer>
+
+</body>
+</html>
